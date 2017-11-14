@@ -1,42 +1,38 @@
-﻿using Maze.Bootstrapping.Logger;
-using Maze.Core.Runnable;
-using Maze.Models;
+﻿using System;
+using Maze.Core;
+using Maze.Flow;
+using Maze.Flow.MazeLoader;
+using Maze.Flow.MazeReader;
 using Unity;
-using Unity.Extension;
-using Unity.Lifetime;
 
 namespace Maze
 {
 	public class StartUp : Runnable
 	{
-		
+		public static IUnityContainer _container;
+
+		public StartUp()
+		{
+			_container = new UnityContainer();
+		}
+
+
 		protected override void OnStart(object context = null)
 		{
-			//var instance = new MazeModel()
-			//{
-			//	Width = 5,
-			//	Height = 4,
-			//	Entrance = new Node()
-			//	{
-			//		X = 1,
-			//		Y = 1,
-			//		Content = Content.Entrance
-			//	},
-			//	Exit = new Node()
-			//	{
-			//		X = 4,
-			//		Y = 5,
-			//		Content = Content.Exit
-			//	}
-			//};
+			//_container.RegisterType<IRunnable, Runnable>();
+			_container.RegisterType<IMazeReader, MazeReader>();
+			_container.RegisterType<IMazeLoader, MazeLoader>();
 		}
 
 		protected override void OnStop()
+		{ }
+
+		public void SolveMaze()
 		{
-			
+			var mazeReader = _container.Resolve<IMazeReader>();
+			var mazeLoader = _container.Resolve<IMazeLoader>();
+
 		}
 
-
-		
 	}
 }

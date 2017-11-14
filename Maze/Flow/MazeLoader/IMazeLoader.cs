@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maze.Core;
 
-namespace Maze.Core.Runnable
+namespace Maze.Flow.MazeLoader
 {
-	public interface IRunnable : IDisposable
+	public interface IMazeLoader : IRunnable
 	{
-		void Start(object context = null);
-		void Stop();
 	}
 }

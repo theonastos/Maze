@@ -69,8 +69,15 @@
   <ItemGroup>
     <Compile Include="Bootstrapping\Logger\ILogger.cs" />
     <Compile Include="Bootstrapping\Logger\Logger.cs" />
-    <Compile Include="Core\Runnable\IRunnable.cs" />
-    <Compile Include="Core\Runnable\Runnable.cs" />
+    <Compile Include="Core\FlowActionBase.cs" />
+    <Compile Include="Core\IRunnable.cs" />
+    <Compile Include="Core\Runnable.cs" />
+    <Compile Include="Core\PerformOperationActionBase.cs" />
+    <Compile Include="Flow\IMazeReader.cs" />
+    <Compile Include="Flow\MazeSolveFlow.cs" />
+    <Compile Include="Flow\MazeLoader.cs" />
+    <Compile Include="Flow\MazeReader.cs" />
+    <Compile Include="Models\MazeDirections.cs" />
     <Compile Include="Models\MazeModel.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\Operation.cs" />

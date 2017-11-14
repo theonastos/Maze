@@ -1,13 +1,9 @@
 ﻿using System;
-using Unity;
-using Unity.Extension;
 
-
-namespace Maze.Core.Runnable
+namespace Maze.Core
 {
 	public abstract class Runnable: IRunnable
 	{
-
 		public void Start(object context = null)
 		{
 			OnStart();
@@ -30,7 +26,6 @@ namespace Maze.Core.Runnable
 		{
 			Stop();
 		}
-
-		public IUnityContainer Container { get; }
+		
 	}
 }
