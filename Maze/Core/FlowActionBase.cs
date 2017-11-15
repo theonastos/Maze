@@ -1,10 +1,15 @@
-﻿using Maze.Models;
+﻿using Maze.Bootstrapping.Logger;
 
 namespace Maze.Core
 {
-	public abstract class FlowActionBase<TIn, TOut> : IFlowAction<TIn, TOut>
-		
+	public class FlowActionBase : Runnable
 	{
-		public abstract bool TryExecute(TIn item, out TOut tout);
+
+		public ILogger Logger;
+		protected override void OnStart(object context = null)
+		{}
+
+		protected override void OnStop()
+		{}
 	}
 }

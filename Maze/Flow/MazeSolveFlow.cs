@@ -1,6 +1,8 @@
 ﻿using System;
-using Maze.Flow.MazeLoader;
-using Maze.Flow.MazeReader;
+using Maze.Bootstrapping.Logger;
+using Maze.Flow.MazeLoadContentAction;
+using Maze.Flow.MazeReaderAction;
+using Maze.Flow.MazeSolverAction;
 using Maze.Models;
 
 namespace Maze.Flow
@@ -9,32 +11,30 @@ namespace Maze.Flow
 	{
 		public Operation _operation;
 
-		public IMazeReader _mazeReader;
-		public IMazeLoader _mazeLoader;
+		private ILogger _logger;
+		private readonly IMazeSolverAction _mazeSolver;
+		private readonly IMazeReaderAction _mazeReader;
+		private readonly IMazeLoadContentsAction _mazeLoader;
+
 		public MazeSolveFlow(
-			IMazeReader mazeReader,
-			IMazeLoader mazeLoader)
+			Operation operation,
+			ILogger logger,
+			IMazeSolverAction mazeSolver,
+			IMazeReaderAction mazeReader,
+			IMazeLoadContentsAction mazeLoader)
 		{
+			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			_operation = operation ?? throw new ArgumentNullException(nameof(operation));
 			_mazeReader = mazeReader ?? throw new ArgumentNullException(nameof(mazeReader));
 			_mazeLoader = mazeLoader ?? throw new ArgumentNullException(nameof(mazeLoader));
+			_mazeSolver = mazeSolver ?? throw new ArgumentNullException(nameof(mazeSolver));
 
-			_operation = new Operation()
-			{
-				Algorithm = Algorithm.Recursive,
-				FilePath = @"C:\Users\theo\Desktop\Mazes\sample.txt",
-				Maze = new MazeModel()
-			};
 		}
-
 		public void Solve()
 		{
-			//var mazeReader = new MazeReader();
-			//mazeReader.TryExecute(_operation, out _operation);
-
-			var mazeLoader = new MazeLoader.MazeLoader();
-			mazeLoader.TryExecute(_operation, out _operation);
-
-			var whatever = "string";
+			_mazeReader.TryExecute(_operation, out _operation);
+			_mazeLoader.TryExecute(_operation, out _operation);
+			_mazeSolver.TryExecute(_operation, out _operation);
 		}
 	}
 }

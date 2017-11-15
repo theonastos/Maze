@@ -1,6 +1,4 @@
-﻿using Maze.Models;
-
-namespace Maze.Core.SolverCoordinatorFactory
+﻿namespace Maze.Core.SolverCoordinatorFactory
 {
 	public class SolverCoordinatorFactory : ISolverCoordinatorFactory
 	{

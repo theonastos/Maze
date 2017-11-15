@@ -1,16 +1,44 @@
 ﻿using System;
 using System.IO;
+using Maze.Bootstrapping.Logger;
 using Maze.Core;
 using Maze.Models;
 
-namespace Maze.Flow.MazeReader
+namespace Maze.Flow.MazeReaderAction
 {
-	public class MazeReader : PerformOperationActionBase<Operation>, IMazeReader
+	public class MazeReaderAction : PerformOperationActionBase<Operation>, IMazeReaderAction
 	{
 		private StreamReader _streamReader;
-		
+
+		public MazeReaderAction(ILogger logger) 
+			: base(logger)
+		{ }
+
 		protected override void OnStartOperation(Operation item)
 		{
+			var validateMaze = String.Empty;
+			try
+			{
+				validateMaze = File.ReadAllText(item.FilePath);
+			}
+			catch (FileNotFoundException nfe)
+			{
+				//TODO Add logging when file not found
+			}
+			catch (Exception e)
+			{
+				if (!validateMaze.Contains("S"))
+				{
+					//TODO add logging when entance is not given
+
+				}
+
+				if (!validateMaze.Contains("G"))
+				{
+					//TODO add logging when exit is not given
+				}
+			}
+
 			_streamReader = new StreamReader(item.FilePath);
 		}
 
@@ -34,12 +62,11 @@ namespace Maze.Flow.MazeReader
 				else
 				{
 					if (item.Maze.Columns != mapRow.Length)
-						throw new Exception("The maze file appears to be corrupt. One of the lines has more/less elements than the previous one.");
+						throw new Exception("All lines must have the same length");
 				}
 				item.Maze.Lines.Add(mapRow);
 				item.Maze.Rows++;
 			}
 		}
-		
 	}
 }

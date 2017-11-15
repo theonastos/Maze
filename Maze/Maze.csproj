@@ -67,16 +67,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\RecursiveAlgorithm.cs" />
+    <Compile Include="Algorithms\SolvingAlgorithmBase\ISolvingAlgorithm.cs" />
+    <Compile Include="Algorithms\SolvingAlgorithmBase\SolvingAlgorithmBase.cs" />
+    <Compile Include="Algorithms\SolvingAlgorithmFactory\ISolvingAlgorithmFactory.cs" />
+    <Compile Include="Algorithms\SolvingAlgorithmFactory\SolvingAlgorithmFactory.cs" />
     <Compile Include="Bootstrapping\Logger\ILogger.cs" />
     <Compile Include="Bootstrapping\Logger\Logger.cs" />
-    <Compile Include="Core\FlowActionBase.cs" />
+    <Compile Include="Core\FlowItemActionBase.cs" />
+    <Compile Include="Core\IFlowItemActionBase.cs" />
     <Compile Include="Core\IRunnable.cs" />
-    <Compile Include="Core\Runnable.cs" />
     <Compile Include="Core\PerformOperationActionBase.cs" />
-    <Compile Include="Flow\IMazeReader.cs" />
+    <Compile Include="Core\Runnable.cs" />
+    <Compile Include="Flow\MazeLoadContentAction\IMazeLoadContentsAction.cs" />
+    <Compile Include="Flow\MazeReaderAction\IMazeReaderAction.cs" />
+    <Compile Include="Flow\MazeLoadContentAction\MazeLoadContentsAction.cs" />
+    <Compile Include="Flow\MazeReaderAction\MazeReaderAction.cs" />
     <Compile Include="Flow\MazeSolveFlow.cs" />
-    <Compile Include="Flow\MazeLoader.cs" />
-    <Compile Include="Flow\MazeReader.cs" />
+    <Compile Include="Flow\MazeSolverAction\IMazeSolverAction.cs" />
+    <Compile Include="Flow\MazeSolverAction\MazeSolverAction.cs" />
+    <Compile Include="MazeConstants.cs" />
     <Compile Include="Models\MazeDirections.cs" />
     <Compile Include="Models\MazeModel.cs" />
     <Compile Include="Models\Node.cs" />

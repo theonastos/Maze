@@ -3,7 +3,7 @@
 	public enum Algorithm
 	{
 		Recursive,
-		Trémaux,
+		Trémaux
 	}
 	public class Operation
 	{
