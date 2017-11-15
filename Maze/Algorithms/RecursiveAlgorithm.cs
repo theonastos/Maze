@@ -8,12 +8,9 @@ namespace Maze.Algorithms
 	public class RecursiveAlgorithm : SolvingAlgorithmBase.SolvingAlgorithmBase
 	{
 		public RecursiveAlgorithm(
-			Operation operation, 
 			ILogger logger) 
-			: base(operation, logger)
-		{
-			
-		}
+			: base(logger)
+		{ }
 
 		protected override void OnStart(object context = null)
 		{
@@ -25,9 +22,9 @@ namespace Maze.Algorithms
 			
 		}
 
-		public override bool OnExecute()
+		public override bool OnExecute(Operation tin)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 	}
 }

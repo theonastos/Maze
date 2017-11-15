@@ -8,22 +8,20 @@ namespace Maze.Algorithms.SolvingAlgorithmBase
 
 	public abstract class SolvingAlgorithmBase : Runnable, ISolvingAlgorithm
 	{
-		protected SolvingAlgorithmBase(
-			Operation operation,
-			ILogger logger)
+		protected SolvingAlgorithmBase(ILogger logger)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			Operation = operation;
+			
 		}
 
 		public ILogger Logger;
 		public Operation Operation;
 
-		public bool Execute()
+		public bool Execute(Operation tin)
 		{
-			return OnExecute();
+			return OnExecute(tin);
 		}
 
-		public abstract bool OnExecute();
+		public abstract bool OnExecute(Operation tin);
 	}
 }

@@ -1,7 +1,9 @@
-﻿namespace Maze.Algorithms.SolvingAlgorithmBase
+﻿using Maze.Models;
+
+namespace Maze.Algorithms.SolvingAlgorithmBase
 {
 	public interface ISolvingAlgorithm
 	{
-		bool OnExecute();
+		bool OnExecute(Operation operation);
 	}
 }

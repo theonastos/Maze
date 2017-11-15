@@ -8,19 +8,15 @@ namespace Maze.Algorithms.SolvingAlgorithmFactory
 	public class SolvingAlgorithmFactory : ISolvingAlgorithmFactory
 	{
 		private readonly ILogger _logger;
-		private readonly Operation _operation;
-
-		public SolvingAlgorithmFactory(
-			Operation operation,
-			ILogger logger)
+		
+		public SolvingAlgorithmFactory(ILogger logger)
 		{
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			_operation = operation ?? throw new ArgumentNullException(nameof(operation));
 		}
 
 		public ISolvingAlgorithm Create(Algorithm algorithm)
 		{			
-			if (algorithm == Algorithm.Recursive) return new RecursiveAlgorithm(_operation, _logger);
+			if (algorithm == Algorithm.Recursive) return new RecursiveAlgorithm(_logger);
 
 			return null;
 		}
