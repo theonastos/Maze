@@ -2,7 +2,7 @@
 
 namespace Maze.Flow.MazeReader
 {
-	public interface IMazeReader : IRunnable
+	public interface IMazeReader
 	{
 	}
 }

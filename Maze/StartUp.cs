@@ -32,6 +32,7 @@ namespace Maze
 			var mazeReader = _container.Resolve<IMazeReader>();
 			var mazeLoader = _container.Resolve<IMazeLoader>();
 
+			mazeReader
 		}
 
 	}

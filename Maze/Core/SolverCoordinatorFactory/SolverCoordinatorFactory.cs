@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Maze.Core.SolverCoordinator;
-using Maze.Models;
+﻿using Maze.Models;
 
-namespace Maze.Core
+namespace Maze.Core.SolverCoordinatorFactory
 {
 	public class SolverCoordinatorFactory : ISolverCoordinatorFactory
 	{
-		public SolverCoordinatorFactory()
-		{ }
-
-		public ISolverCoordinator Create(Operation operation)
-		{
-			return new FileExportCoordinator.FileExportCoordinator(operation, _clockService, _logger, _blobServiceClient, _segmentationServiceClient);
-		}
+		//public ISolverCoordinator Create(Operation operation)
+		//{
+		//	return new MazeSolverCoordinator.MazeSolverCoordinator(operation);
+		//}
 	}
 }

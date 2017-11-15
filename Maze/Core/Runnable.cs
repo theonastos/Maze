@@ -2,7 +2,7 @@
 
 namespace Maze.Core
 {
-	public abstract class Runnable: IRunnable
+	public abstract class Runnable: IRunnable, IDisposable
 	{
 		public void Start(object context = null)
 		{
