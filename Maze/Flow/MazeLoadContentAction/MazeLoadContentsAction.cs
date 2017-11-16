@@ -41,7 +41,7 @@ namespace Maze.Flow.MazeLoadContentAction
 							break;
 						case MazeConstants.MAZE_EXIT:
 							item.Maze.Map[x, y].Content = Content.Exit;
-							item.Maze.Entrance = item.Maze.Map[x, y];
+							item.Maze.Exit = item.Maze.Map[x, y];
 							break;
 					}
 				}

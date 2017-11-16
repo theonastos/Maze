@@ -6,6 +6,6 @@ namespace Maze.Algorithms.SolvingAlgorithmFactory
 {
 	public interface ISolvingAlgorithmFactory
 	{
-		ISolvingAlgorithm Create(Algorithm algorithm);
+		ISolvingAlgorithm Create();
 	}
 }

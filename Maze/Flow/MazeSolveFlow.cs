@@ -1,5 +1,6 @@
 ﻿using System;
 using Maze.Bootstrapping.Logger;
+using Maze.Core;
 using Maze.Flow.MazeLoadContentAction;
 using Maze.Flow.MazeReaderAction;
 using Maze.Flow.MazeSolverAction;
@@ -7,7 +8,7 @@ using Maze.Models;
 
 namespace Maze.Flow
 {
-	public class MazeSolveFlow
+	public class MazeSolveFlow : Runnable
 	{
 		public Operation _operation;
 
@@ -30,11 +31,15 @@ namespace Maze.Flow
 			_mazeSolver = mazeSolver ?? throw new ArgumentNullException(nameof(mazeSolver));
 
 		}
-		public void Solve()
+
+		protected override void OnStart(object context = null)
 		{
 			_mazeReader.TryExecute(_operation, out _operation);
 			_mazeLoader.TryExecute(_operation, out _operation);
 			_mazeSolver.TryExecute(_operation, out _operation);
 		}
+
+		protected override void OnStop()
+		{ }
 	}
 }

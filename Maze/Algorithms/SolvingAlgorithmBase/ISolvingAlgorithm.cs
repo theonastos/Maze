@@ -4,6 +4,6 @@ namespace Maze.Algorithms.SolvingAlgorithmBase
 {
 	public interface ISolvingAlgorithm
 	{
-		bool OnExecute(Operation operation);
+		bool OnExecute();
 	}
 }

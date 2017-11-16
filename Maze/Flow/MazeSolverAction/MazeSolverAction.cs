@@ -19,13 +19,13 @@ namespace Maze.Flow.MazeSolverAction
 
 		protected override void OnStartOperation(Operation item)
 		{
-			_solvingAlgorithmFactory = new SolvingAlgorithmFactory(_logger);
-			_solvingAlgorithm = _solvingAlgorithmFactory.Create(item.Algorithm);
+			_solvingAlgorithmFactory = new SolvingAlgorithmFactory(item, _logger);
+			_solvingAlgorithm = _solvingAlgorithmFactory.Create();
 		}
 
 		protected override void OnPerformOperation(Operation item)
 		{
-			_solvingAlgorithm.OnExecute(item);
+			_solvingAlgorithm.OnExecute();
 		}
 	}
 }

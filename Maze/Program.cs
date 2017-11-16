@@ -1,6 +1,4 @@
-﻿using Maze.Flow;
-
-namespace Maze
+﻿namespace Maze
 {
 	class Program
 	{
@@ -9,7 +7,6 @@ namespace Maze
 			using (var startup = new StartUp())
 			{
 				startup.Start();
-				startup.SolveMaze();
 			}
 		}
 	}

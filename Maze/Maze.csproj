@@ -87,6 +87,7 @@
     <Compile Include="Flow\MazeSolverAction\IMazeSolverAction.cs" />
     <Compile Include="Flow\MazeSolverAction\MazeSolverAction.cs" />
     <Compile Include="MazeConstants.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Models\MazeDirections.cs" />
     <Compile Include="Models\MazeModel.cs" />
     <Compile Include="Models\Node.cs" />
