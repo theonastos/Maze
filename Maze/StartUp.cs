@@ -95,6 +95,7 @@ namespace Maze
 
 			var flow = new MazeSolveFlow(_operation, logger, mazeSolver, mazeReader, mazeLoader);
 			flow.Start();
+			flow.Stop();
 		}
 
 		protected override void OnStop()

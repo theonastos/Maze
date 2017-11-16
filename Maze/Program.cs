@@ -7,6 +7,7 @@
 			using (var startup = new StartUp())
 			{
 				startup.Start();
+				startup.Stop();
 			}
 		}
 	}

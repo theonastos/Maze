@@ -6,7 +6,7 @@ using Maze.Models;
 namespace Maze.Algorithms.SolvingAlgorithmBase
 {
 
-	public abstract class SolvingAlgorithmBase : Runnable, ISolvingAlgorithm
+	public abstract class SolvingAlgorithmBase : ISolvingAlgorithm
 	{
 		protected SolvingAlgorithmBase(
 			Operation operation,

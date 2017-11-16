@@ -6,8 +6,8 @@ namespace Maze.Algorithms
 {
 	public class RecursiveAlgorithm : SolvingAlgorithmBase.SolvingAlgorithmBase
 	{
-		private bool[,] _visited;
-		private bool[,] _correctPath;
+		private readonly bool[,] _visited;
+		private readonly bool[,] _correctPath;
 
 		public RecursiveAlgorithm(
 			Operation operation,
@@ -30,7 +30,7 @@ namespace Maze.Algorithms
 					_correctPath[x, y] = true; // Sets that path value to true;
 					return true;
 				}
-			if (x != Operation.Maze.Columns - 1) // Checks if not on right edge
+			if (x != Operation.Maze.Rows - 1) // Checks if not on right edge
 				if (RecursiveSolve(x + 1, y))
 				{ // Recalls method one to the right
 					_correctPath[x, y] = true;
@@ -42,7 +42,7 @@ namespace Maze.Algorithms
 					_correctPath[x, y] = true;
 					return true;
 				}
-			if (y != Operation.Maze.Rows - 1) // Checks if not on bottom edge
+			if (y != Operation.Maze.Columns - 1) // Checks if not on bottom edge
 				if (RecursiveSolve(x, y + 1))
 				{ // Recalls method one down
 					_correctPath[x, y] = true;
@@ -50,12 +50,6 @@ namespace Maze.Algorithms
 				}
 			return false;
 		}
-
-		protected override void OnStart(object context = null)
-		{ }
-
-		protected override void OnStop()
-		{ }
 
 		public override bool OnExecute()
 		{
