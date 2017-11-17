@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Maze.Bootstrapping.Logger;
+using log4net;
 using Maze.Core;
 using Maze.Models;
 
@@ -10,7 +10,7 @@ namespace Maze.Flow.MazeReaderAction
 	{
 		private StreamReader _streamReader;
 
-		public MazeReaderAction(ILogger logger) 
+		public MazeReaderAction(ILog logger) 
 			: base(logger)
 		{ }
 
@@ -20,26 +20,25 @@ namespace Maze.Flow.MazeReaderAction
 			try
 			{
 				validateMaze = File.ReadAllText(item.FilePath);
-			}
-			catch (FileNotFoundException nfe)
-			{
-				//TODO Add logging when file not found
-			}
-			catch (Exception e)
-			{
+				_streamReader = new StreamReader(item.FilePath);
+
 				if (!validateMaze.Contains("S"))
 				{
-					//TODO add logging when entance is not given
-
+					Logger.Error("Could not find a maze entrance please try again");
+					OnFinishOperation(item);
 				}
 
 				if (!validateMaze.Contains("G"))
 				{
-					//TODO add logging when exit is not given
+					Logger.Error("Could not find a maze entrance please try again");
+					OnFinishOperation(item);
 				}
 			}
-
-			_streamReader = new StreamReader(item.FilePath);
+			catch (FileNotFoundException nfe)
+			{
+				Logger.Error(nfe.GetBaseException().Message);
+				OnFinishOperation(item);
+			}
 		}
 
 		protected override void OnFinishOperation(Operation item)

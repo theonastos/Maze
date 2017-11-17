@@ -12,6 +12,6 @@ namespace Maze.Models
 		public string FilePath { get; set; }
 		public Algorithm Algorithm { get; set; }
 		public MazeModel Maze { get; set; }
-		public Queue<Node> PathToSolution { get; set; }
+		public Stack<Node> PathToSolution { get; set; }
 	}
 }

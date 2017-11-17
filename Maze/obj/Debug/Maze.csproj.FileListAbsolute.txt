@@ -44,3 +44,6 @@ C:\Dev\projects\Maze\Maze\Maze\obj\Debug\Maze.csprojResolveAssemblyReference.cac
 C:\Dev\projects\Maze\Maze\Maze\obj\Debug\Maze.csproj.CoreCompileInputs.cache
 C:\Dev\projects\Maze\Maze\Maze\obj\Debug\Maze.exe
 C:\Dev\projects\Maze\Maze\Maze\obj\Debug\Maze.pdb
+C:\Dev\projects\Maze\Maze\Maze\bin\Debug\log4net.dll
+C:\Dev\projects\Maze\Maze\Maze\bin\Debug\log4net.xml
+C:\Dev\projects\Maze\Maze\Maze\bin\Debug\configs\log4net.config

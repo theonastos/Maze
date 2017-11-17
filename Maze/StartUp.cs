@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Maze.Bootstrapping.Logger;
+using log4net;
 using Maze.Core;
 using Maze.Flow;
 using Maze.Flow.MazeLoadContentAction;
@@ -13,10 +13,12 @@ namespace Maze
 {
 	public class StartUp : Runnable
 	{
+		private MazeSolveFlow _flow;
 		private readonly Operation _operation;
 
 		private readonly IUnityContainer _container;
-		
+		private static readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
 		public StartUp()
 		{
 			_container = new UnityContainer();
@@ -26,34 +28,35 @@ namespace Maze
 			};
 		}
 
-		private void RenderAlgorithmMenu()
-		{
-			Console.WriteLine("Trémaux [1]");
-			Console.WriteLine("Recursive [0]");
-			ConsoleKeyInfo userInput;
-			do
-			{
-				userInput = Console.ReadKey(true);
-
-				switch (userInput.KeyChar.ToString())
-				{
-					case "0":
-						_operation.Algorithm = Algorithm.Recursive;
-						return;
-					case "1":
-						_operation.Algorithm = Algorithm.Trémaux;
-						return;
-				}
-			} while (userInput.Key != ConsoleKey.Escape);
-		}
-
 		protected override void OnStart(object context = null)
 		{
-			_container.RegisterType<ILogger, Logger>();
+			_container.RegisterInstance(_logger);
 			_container.RegisterType<IMazeReaderAction, MazeReaderAction>();
 			_container.RegisterType<IMazeLoadContentsAction, MazeLoadContentsAction>();
 			_container.RegisterType<IMazeSolverAction, MazeSolverAction>();
 
+			InitUI();
+
+			StartFlow();
+		}
+
+		private void StartFlow()
+		{
+			var mazeLoader = _container.Resolve<IMazeLoadContentsAction>();
+			var mazeReader = _container.Resolve<IMazeReaderAction>();
+			var mazeSolver = _container.Resolve<IMazeSolverAction>();
+
+			_flow = new MazeSolveFlow(_operation, mazeSolver, mazeReader, mazeLoader);
+			_flow.Start();
+		}
+
+		protected override void OnStop()
+		{
+			_flow.Dispose();
+		}
+
+		private void InitUI()
+		{
 			var algorithmMenu = new Menu()
 			{
 				Subtitle = "Choose the algorithm you want to use to solve the maze.",
@@ -81,25 +84,29 @@ namespace Maze
 			};
 
 			algorithmMenu.Run();
+			
 			getMazePathMenu.Run();
-
-			StartFlow();
 		}
 
-		private void StartFlow()
+		private void RenderAlgorithmMenu()
 		{
-			var logger = _container.Resolve<ILogger>();
-			var mazeLoader = _container.Resolve<IMazeLoadContentsAction>();
-			var mazeReader = _container.Resolve<IMazeReaderAction>();
-			var mazeSolver = _container.Resolve<IMazeSolverAction>();
+			Console.WriteLine("Trémaux [1]");
+			Console.WriteLine("Recursive [0]");
+			ConsoleKeyInfo userInput;
+			do
+			{
+				userInput = Console.ReadKey(true);
 
-			var flow = new MazeSolveFlow(_operation, logger, mazeSolver, mazeReader, mazeLoader);
-			flow.Start();
-			flow.Stop();
+				switch (userInput.KeyChar.ToString())
+				{
+					case "0":
+						_operation.Algorithm = Algorithm.Recursive;
+						return;
+					case "1":
+						_operation.Algorithm = Algorithm.Trémaux;
+						return;
+				}
+			} while (userInput.Key != ConsoleKey.Escape);
 		}
-
-		protected override void OnStop()
-		{ }
-
 	}
 }

@@ -1,6 +1,7 @@
-﻿namespace Maze.Bootstrapping.Logger
+﻿namespace Maze.Core.Logger
 {
 	public class Logger : ILogger
 	{
+
 	}
 }

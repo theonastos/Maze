@@ -1,6 +1,7 @@
 ﻿using System;
+using log4net;
 using Maze.Algorithms.SolvingAlgorithmBase;
-using Maze.Bootstrapping.Logger;
+using Maze.Core.Logger;
 using Maze.Models;
 
 namespace Maze.Algorithms.SolvingAlgorithmFactory
@@ -9,11 +10,11 @@ namespace Maze.Algorithms.SolvingAlgorithmFactory
 	{
 		private readonly Operation _operation;
 
-		private readonly ILogger _logger;
+		private readonly ILog _logger;
 		
 		public SolvingAlgorithmFactory(
-			Operation operation, 
-			ILogger logger)
+			Operation operation,
+			ILog logger)
 		{
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_operation = operation ?? throw new ArgumentNullException(nameof(operation));

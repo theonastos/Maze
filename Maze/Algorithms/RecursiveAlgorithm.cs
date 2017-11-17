@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Maze.Bootstrapping.Logger;
+using log4net;
 using Maze.Models;
 
 namespace Maze.Algorithms
@@ -11,7 +11,7 @@ namespace Maze.Algorithms
 
 		public RecursiveAlgorithm(
 			Operation operation,
-			ILogger logger)
+			ILog logger)
 			: base(operation, logger)
 		{
 			_visited = new bool[operation.Maze.Columns, operation.Maze.Rows];
@@ -28,24 +28,28 @@ namespace Maze.Algorithms
 				if (RecursiveSolve(x - 1, y))
 				{ // Recalls method one to the left
 					_correctPath[x, y] = true; // Sets that path value to true;
+					Operation.PathToSolution.Push(Operation.Maze.Map[x, y]);
 					return true;
 				}
 			if (x != Operation.Maze.Rows - 1) // Checks if not on right edge
 				if (RecursiveSolve(x + 1, y))
 				{ // Recalls method one to the right
 					_correctPath[x, y] = true;
+					Operation.PathToSolution.Push(Operation.Maze.Map[x, y]);
 					return true;
 				}
 			if (y != 0)  // Checks if not on top edge
 				if (RecursiveSolve(x, y - 1))
 				{ // Recalls method one up
 					_correctPath[x, y] = true;
+					Operation.PathToSolution.Push(Operation.Maze.Map[x, y]);
 					return true;
 				}
 			if (y != Operation.Maze.Columns - 1) // Checks if not on bottom edge
 				if (RecursiveSolve(x, y + 1))
 				{ // Recalls method one down
 					_correctPath[x, y] = true;
+					Operation.PathToSolution.Push(Operation.Maze.Map[x, y]);
 					return true;
 				}
 			return false;
@@ -53,7 +57,9 @@ namespace Maze.Algorithms
 
 		public override bool OnExecute()
 		{
+			Operation.PathToSolution = new Stack<Node>();
 			RecursiveSolve(Operation.Maze.Entrance.X, Operation.Maze.Entrance.Y);
+			Operation.PathToSolution.Push(Operation.Maze.Exit);
 			return true;
 		}
 	}

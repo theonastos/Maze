@@ -1,14 +1,27 @@
-﻿namespace Maze
+﻿using System;
+
+namespace Maze
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			using (var startup = new StartUp())
+			var startup = new StartUp();
+			try
 			{
 				startup.Start();
-				startup.Stop();
 			}
+			catch (Exception e)
+			{
+
+				Console.WriteLine(e);
+				startup.Stop();
+				Console.Write("Press Any Key to Restart");
+				Console.ReadKey(true);
+				startup.Start();
+			}
+			
+			startup.Dispose();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-using Maze.Bootstrapping.Logger;
+using log4net;
+using Maze.Core.Logger;
 using Maze.Models;
 
 namespace Maze.Core
@@ -7,11 +8,11 @@ namespace Maze.Core
 	public abstract class PerformOperationActionBase<TFlowItem> : FlowItemActionBase<TFlowItem, Operation> 
 		where TFlowItem : Operation
 	{
-		protected readonly ILogger _logger;
+		protected readonly ILog Logger;
 
-		protected PerformOperationActionBase(ILogger logger)
+		protected PerformOperationActionBase(ILog logger)
 		{
-			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
 		public override bool TryExecute(TFlowItem tin, out Operation tout)

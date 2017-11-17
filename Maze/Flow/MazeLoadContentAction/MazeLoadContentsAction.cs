@@ -1,4 +1,4 @@
-﻿using Maze.Bootstrapping.Logger;
+﻿using log4net;
 using Maze.Core;
 using Maze.Models;
 
@@ -6,7 +6,7 @@ namespace Maze.Flow.MazeLoadContentAction
 {
 	public class MazeLoadContentsAction : PerformOperationActionBase<Operation>, IMazeLoadContentsAction
 	{
-		public MazeLoadContentsAction(ILogger logger) 
+		public MazeLoadContentsAction(ILog logger) 
 			: base(logger)
 		{ }
 

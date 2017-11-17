@@ -1,6 +1,5 @@
 ﻿using System;
-using Maze.Bootstrapping.Logger;
-using Maze.Core;
+using log4net;
 using Maze.Models;
 
 namespace Maze.Algorithms.SolvingAlgorithmBase
@@ -10,13 +9,13 @@ namespace Maze.Algorithms.SolvingAlgorithmBase
 	{
 		protected SolvingAlgorithmBase(
 			Operation operation,
-			ILogger logger)
+			ILog logger)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			Operation = operation ?? throw new ArgumentNullException(nameof(operation));
 		}
 
-		public ILogger Logger;
+		public ILog Logger;
 		public Operation Operation;
 
 		public bool Execute()

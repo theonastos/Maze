@@ -36,6 +36,9 @@
     <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.2.0\lib\net45\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,11 +75,13 @@
     <Compile Include="Algorithms\SolvingAlgorithmBase\SolvingAlgorithmBase.cs" />
     <Compile Include="Algorithms\SolvingAlgorithmFactory\ISolvingAlgorithmFactory.cs" />
     <Compile Include="Algorithms\SolvingAlgorithmFactory\SolvingAlgorithmFactory.cs" />
-    <Compile Include="Bootstrapping\Logger\ILogger.cs" />
-    <Compile Include="Bootstrapping\Logger\Logger.cs" />
+    <Compile Include="Core\Logger\ErrorFlagAppernder.cs" />
+    <Compile Include="Core\Logger\ILogger.cs" />
+    <Compile Include="Core\Logger\Logger.cs" />
     <Compile Include="Core\FlowItemActionBase.cs" />
     <Compile Include="Core\IFlowItemActionBase.cs" />
     <Compile Include="Core\IRunnable.cs" />
+    <Compile Include="Core\Logger\LogManagerExtensions.cs" />
     <Compile Include="Core\PerformOperationActionBase.cs" />
     <Compile Include="Core\Runnable.cs" />
     <Compile Include="Flow\MazeLoadContentAction\IMazeLoadContentsAction.cs" />
@@ -88,7 +93,6 @@
     <Compile Include="Flow\MazeSolverAction\MazeSolverAction.cs" />
     <Compile Include="MazeConstants.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="Models\MazeDirections.cs" />
     <Compile Include="Models\MazeModel.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\Operation.cs" />
@@ -98,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="configs\log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
