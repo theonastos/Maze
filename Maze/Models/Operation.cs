@@ -4,8 +4,7 @@ namespace Maze.Models
 {
 	public enum Algorithm
 	{
-		Recursive,
-		Trémaux
+		Recursive
 	}
 	public class Operation
 	{

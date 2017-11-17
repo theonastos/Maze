@@ -1,11 +1,14 @@
 ﻿using System;
 using log4net;
 using Maze.Algorithms.SolvingAlgorithmBase;
-using Maze.Core.Logger;
 using Maze.Models;
 
 namespace Maze.Algorithms.SolvingAlgorithmFactory
 {
+	/// <summary>
+	///     This class will create an algorithm class that implements the ISolvingAlgorithm interface depending on the algorithm that is chosen by the user
+	/// </summary>
+
 	public class SolvingAlgorithmFactory : ISolvingAlgorithmFactory
 	{
 		private readonly Operation _operation;

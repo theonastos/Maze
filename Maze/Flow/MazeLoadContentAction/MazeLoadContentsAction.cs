@@ -10,9 +10,9 @@ namespace Maze.Flow.MazeLoadContentAction
 			: base(logger)
 		{ }
 
-		protected override void OnPerformOperation(Operation item)
+		protected override bool OnPerformOperation(Operation item)
 		{
-			item.Maze.Map = new Node[item.Maze.Rows, item.Maze.Columns];
+			item.Maze.Map = new Node[item.Maze.Rows, item.Maze.Columns]; // Create a two dimensional array of nodes
 
 			for (var x = 0; x < item.Maze.Rows; x++)
 			{
@@ -21,13 +21,13 @@ namespace Maze.Flow.MazeLoadContentAction
 				{
 					var content = cellArrayOfRow[y];
 
-					item.Maze.Map[x, y] = new Node()
+					item.Maze.Map[x, y] = new Node() // Assigns coordinates to the current node
 					{
 						X = x,
 						Y = y
 					};
 
-					switch (content.ToString())
+					switch (content.ToString()) // Assign the content of the current node as a maze element
 					{
 						case MazeConstants.MAZE_PATH:
 							item.Maze.Map[x, y].Content = Content.Path;
@@ -46,6 +46,7 @@ namespace Maze.Flow.MazeLoadContentAction
 					}
 				}
 			}
+			return true;
 		}
 	}
 }

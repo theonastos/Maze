@@ -15,6 +15,8 @@ namespace Maze.Flow
 		private readonly IMazeReaderAction _mazeReader;
 		private readonly IMazeLoadContentsAction _mazeLoader;
 
+		// This class is responsible to coordinate the Operation Actions of the application
+
 		public MazeSolveFlow(
 			Operation operation,
 			IMazeSolverAction mazeSolver,
@@ -30,8 +32,8 @@ namespace Maze.Flow
 
 		protected override void OnStart(object context = null)
 		{
-			_mazeReader.TryExecute(_operation, out _operation);
-			_mazeLoader.TryExecute(_operation, out _operation);
+			if(!_mazeReader.TryExecute(_operation, out _operation)) return;
+			if(!_mazeLoader.TryExecute(_operation, out _operation)) return;
 			_mazeSolver.TryExecute(_operation, out _operation);
 		}
 

@@ -20,7 +20,7 @@ namespace Maze.Algorithms.SolvingAlgorithmBase
 
 		public bool Execute()
 		{
-			return OnExecute();
+			return OnExecute();	
 		}
 
 		public abstract bool OnExecute();

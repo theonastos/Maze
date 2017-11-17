@@ -7,21 +7,20 @@ namespace Maze
 		static void Main(string[] args)
 		{
 			var startup = new StartUp();
+			// If an exception is thrown the startup will restart
 			try
 			{
 				startup.Start();
 			}
-			catch (Exception e)
+			catch 
 			{
-
-				Console.WriteLine(e);
 				startup.Stop();
 				Console.Write("Press Any Key to Restart");
 				Console.ReadKey(true);
 				startup.Start();
 			}
 			
-			startup.Dispose();
+			startup.Dispose(); // makes sure to release any unmanaged resources
 		}
 	}
 }

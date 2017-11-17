@@ -1,6 +1,5 @@
 ﻿using System;
 using log4net;
-using Maze.Core.Logger;
 using Maze.Models;
 
 namespace Maze.Core
@@ -9,6 +8,8 @@ namespace Maze.Core
 		where TFlowItem : Operation
 	{
 		protected readonly ILog Logger;
+
+		private bool _operationSucceeded = true;
 
 		protected PerformOperationActionBase(ILog logger)
 		{
@@ -20,19 +21,19 @@ namespace Maze.Core
 			Process(tin);
 
 			tout = tin;
-			return true;
+			return _operationSucceeded;
 		}
 		private void Process(TFlowItem flowItem)
 		{
 			OnStartOperation(flowItem);
 
-			OnPerformOperation(flowItem);
+			_operationSucceeded = OnPerformOperation(flowItem);
 
 			OnFinishOperation(flowItem);
 		}
 
 		protected virtual void OnStartOperation(TFlowItem item) { }
 		protected virtual void OnFinishOperation(TFlowItem item) { }
-		protected abstract void OnPerformOperation(TFlowItem item);
+		protected abstract bool OnPerformOperation(TFlowItem item);
 	}
 }

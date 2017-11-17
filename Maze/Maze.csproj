@@ -75,13 +75,9 @@
     <Compile Include="Algorithms\SolvingAlgorithmBase\SolvingAlgorithmBase.cs" />
     <Compile Include="Algorithms\SolvingAlgorithmFactory\ISolvingAlgorithmFactory.cs" />
     <Compile Include="Algorithms\SolvingAlgorithmFactory\SolvingAlgorithmFactory.cs" />
-    <Compile Include="Core\Logger\ErrorFlagAppernder.cs" />
-    <Compile Include="Core\Logger\ILogger.cs" />
-    <Compile Include="Core\Logger\Logger.cs" />
     <Compile Include="Core\FlowItemActionBase.cs" />
     <Compile Include="Core\IFlowItemActionBase.cs" />
     <Compile Include="Core\IRunnable.cs" />
-    <Compile Include="Core\Logger\LogManagerExtensions.cs" />
     <Compile Include="Core\PerformOperationActionBase.cs" />
     <Compile Include="Core\Runnable.cs" />
     <Compile Include="Flow\MazeLoadContentAction\IMazeLoadContentsAction.cs" />
@@ -107,6 +103,5 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

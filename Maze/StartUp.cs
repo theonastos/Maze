@@ -30,6 +30,8 @@ namespace Maze
 
 		protected override void OnStart(object context = null)
 		{
+			// Registers dependencies in the Unity (IoC) container
+
 			_container.RegisterInstance(_logger);
 			_container.RegisterType<IMazeReaderAction, MazeReaderAction>();
 			_container.RegisterType<IMazeLoadContentsAction, MazeLoadContentsAction>();
@@ -46,8 +48,8 @@ namespace Maze
 			var mazeReader = _container.Resolve<IMazeReaderAction>();
 			var mazeSolver = _container.Resolve<IMazeSolverAction>();
 
-			_flow = new MazeSolveFlow(_operation, mazeSolver, mazeReader, mazeLoader);
-			_flow.Start();
+			_flow = new MazeSolveFlow(_operation, mazeSolver, mazeReader, mazeLoader); 
+			_flow.Start();			
 		}
 
 		protected override void OnStop()
@@ -59,13 +61,13 @@ namespace Maze
 		{
 			var algorithmMenu = new Menu()
 			{
-				Subtitle = "Choose the algorithm you want to use to solve the maze.",
+				Subtitle = "Choose the algorithm you want to solve the maze with.",
 				Action = RenderAlgorithmMenu
 			};
 
 			var getMazePathMenu = new Menu()
 			{
-				Subtitle = "Type absolut path of the maze map file.",
+				Subtitle = "Type absolute path of the maze map file.",
 				Action = () =>
 				{
 					do
@@ -83,14 +85,13 @@ namespace Maze
 				}
 			};
 
-			algorithmMenu.Run();
+			algorithmMenu.Run(); // Print the algorithm menu
 			
-			getMazePathMenu.Run();
+			getMazePathMenu.Run(); // Print the add maze path menu
 		}
 
 		private void RenderAlgorithmMenu()
 		{
-			Console.WriteLine("Trémaux [1]");
 			Console.WriteLine("Recursive [0]");
 			ConsoleKeyInfo userInput;
 			do
@@ -102,11 +103,8 @@ namespace Maze
 					case "0":
 						_operation.Algorithm = Algorithm.Recursive;
 						return;
-					case "1":
-						_operation.Algorithm = Algorithm.Trémaux;
-						return;
 				}
-			} while (userInput.Key != ConsoleKey.Escape);
+			} while (true);
 		}
 	}
 }

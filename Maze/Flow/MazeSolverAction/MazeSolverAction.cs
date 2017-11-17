@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using log4net;
 using Maze.Algorithms.SolvingAlgorithmBase;
 using Maze.Algorithms.SolvingAlgorithmFactory;
@@ -19,18 +20,26 @@ namespace Maze.Flow.MazeSolverAction
 
 		protected override void OnStartOperation(Operation item)
 		{
-			_solvingAlgorithmFactory = new SolvingAlgorithmFactory(item, Logger);
-			_solvingAlgorithm = _solvingAlgorithmFactory.Create();
+			_solvingAlgorithmFactory = new SolvingAlgorithmFactory(item, Logger); // This factory with create an instance of the user selected algorithm class
+			_solvingAlgorithm = _solvingAlgorithmFactory.Create(); 
 		}
 
-		protected override void OnPerformOperation(Operation item)
+		protected override bool OnPerformOperation(Operation item)
 		{
-			_solvingAlgorithm.OnExecute();
+			_solvingAlgorithm.OnExecute(); // Executes the solving algorithm
+
+			return true;
 		}
 
-		protected override void OnFinishOperation(Operation item)
+		protected override void OnFinishOperation(Operation item) // Print the maze solution to the user (will throw exception if no solution)
 		{
-			Console.WriteLine("Path To Solution Is");
+			if (item.PathToSolution.Count == 0)
+			{
+				Console.WriteLine("No solution was found");
+				throw new Exception();
+			}
+
+			Console.WriteLine("\nPath To Solution Is\n");
 			foreach (var node in item.PathToSolution)
 			{
 				Console.Write($"[{node.X}, {node.Y}] ");
