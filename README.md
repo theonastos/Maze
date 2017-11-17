@@ -33,8 +33,6 @@ License
 
 MIT
 
-**Free Software, Hell Yeah!**
-
    [NUnit]: <https://www.nuget.org/packages/NUnit>
    [Moq]: <https://www.nuget.org/packages/Moq>
    [FluentAssertions]: <https://www.nuget.org/packages/FluentAssertions>
