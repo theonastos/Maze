@@ -37,6 +37,6 @@ MIT
 
    [NUnit]: <https://www.nuget.org/packages/NUnit>
    [Moq]: <https://www.nuget.org/packages/Moq>
-   [FluentAssertions]: <hhttps://www.nuget.org/packages/FluentAssertions>
+   [FluentAssertions]: <https://www.nuget.org/packages/FluentAssertions>
    [Unity]: <https://www.nuget.org/packages/Unity>
    [log4net]: <https://www.nuget.org/packages/log4net>
