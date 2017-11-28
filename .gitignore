@@ -1,4 +1,6 @@
 .vs
 packages
-Maze/bin
-Maze/obj
+Maze/bin/
+Maze/obj/
+Maze.Tests/bin/
+Maze.Tests/obj/
