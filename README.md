@@ -1,6 +1,6 @@
 # Maze Case Study
 
-This is a C# implementation of a Maze Solver console application that uses the `Recursive Algorithm` algorithm
+This is a C# implementation of a Maze Solver console application that uses the `Recursive Algorithm`
 
 ### Input Requirements
 
